@@ -9,7 +9,7 @@ export default function Navbar() {
                     AZ
                 </Link>
                 <div className="flex gap-6">
-                    <Link href={'/project'} className="font-degular font-semibold hover:bg-black hover:text-white transition">
+                    <Link href={'#projects'} className="font-degular font-semibold hover:bg-black hover:text-white transition">
                         Project
                     </Link>
 
