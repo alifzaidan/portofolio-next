@@ -54,7 +54,10 @@ export default function Projects() {
                 </div>
             </div>
             <div className="flex justify-center mb-24">
-                <Link href={'/'} className="flex w-fit items-center gap-1 px-4 py-2 border-2 border-black hover:bg-black hover:text-white transition">
+                <Link
+                    href={'/projects'}
+                    className="flex w-fit items-center gap-1 px-4 py-2 border-2 border-black hover:bg-black hover:text-white transition"
+                >
                     <p className="font-degular font-semibold text-xl">View All Project</p>
                     <RiArrowRightUpLine className="animate-bounce" />
                 </Link>
