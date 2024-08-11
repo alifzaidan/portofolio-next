@@ -7,7 +7,7 @@ const config: Config = {
             colors: {
                 primary: '#E0E0DB',
                 secondary: '#609092',
-                tertiary: '#FF6B00',
+                tertiary: '#384E77',
                 quaternary: '#FFC000',
             },
             fontFamily: {

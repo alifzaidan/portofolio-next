@@ -24,7 +24,15 @@ export default function Navbar() {
 
     return (
         <header
-            className={`border-b-2 border-black ${pathname === '/contact' ? 'bg-black text-white' : pathname === '/about' ? 'bg-secondary' : ''}`}
+            className={`border-b-2 border-black ${
+                pathname === '/contact'
+                    ? 'bg-black text-white'
+                    : pathname === '/about'
+                    ? 'bg-secondary'
+                    : pathname === '/projects'
+                    ? 'bg-tertiary text-white border-white'
+                    : ''
+            }`}
         >
             <nav className="container flex justify-between items-center py-5">
                 <div className="flex gap-12 items-center">
@@ -39,7 +47,7 @@ export default function Navbar() {
                         <Link
                             href={`${pathname === '/' ? '#projects' : '/projects'} `}
                             className={`font-degular font-semibold hover:bg-black hover:text-white transition ${
-                                pathname === '/projects' ? 'border-b-2 border-black' : 'border-b-2 border-transparent'
+                                pathname === '/projects' ? 'border-b-2 border-white' : 'border-b-2 border-transparent'
                             }`}
                         >
                             Project
@@ -87,13 +95,23 @@ export default function Navbar() {
             <div
                 className={`md:hidden transition-opacity transform duration-500 fixed top-16 right-0 h-screen w-full ${
                     menuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
-                }  ${pathname === '/contact' ? 'bg-black text-white' : pathname === '/about' ? 'bg-secondary' : 'bg-primary'}`}
+                }  ${
+                    pathname === '/contact'
+                        ? 'bg-black text-white'
+                        : pathname === '/about'
+                        ? 'bg-secondary'
+                        : pathname === '/projects'
+                        ? 'bg-tertiary'
+                        : 'bg-primary'
+                }`}
             >
                 <nav className="flex flex-col items-center justify-evenly gap-6 h-full">
                     <div className="flex flex-col items-center gap-4">
                         <Link
                             href={`${pathname === '/' ? '#projects' : '/projects'} `}
-                            className="text-4xl font-degular font-semibold"
+                            className={`text-4xl font-degular font-semibold ${
+                                pathname === '/projects' ? 'border-b-2 border-white' : 'border-b-2 border-transparent'
+                            }`}
                             onClick={toggleMenu}
                         >
                             Project
@@ -107,7 +125,13 @@ export default function Navbar() {
                         >
                             About
                         </Link>
-                        <Link href={'/contact'} className="text-4xl font-degular font-semibold" onClick={toggleMenu}>
+                        <Link
+                            href={'/contact'}
+                            className={`text-4xl font-degular font-semibold ${
+                                pathname === '/contact' ? 'border-b-2 border-white' : 'border-b-2 border-transparent'
+                            }`}
+                            onClick={toggleMenu}
+                        >
                             Contact
                         </Link>
                     </div>
