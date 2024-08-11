@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import Navbar from '@/components/layouts/Navbar';
 
 export const metadata: Metadata = {
     title: 'Muchammad Alif Zaidan - Frontend Web Developer',
@@ -14,7 +15,10 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" className="scroll-smooth">
-            <body className="font-acumin">{children}</body>
+            <body className="font-acumin">
+                <Navbar />
+                {children}
+            </body>
         </html>
     );
 }

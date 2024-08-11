@@ -26,7 +26,7 @@ export default function MainSection() {
     }, []);
 
     return (
-        <section className="container h-full flex flex-col justify-center border-b-2 border-black">
+        <section className="container h-screen flex flex-col justify-center border-b-2 border-black">
             <div className="flex gap-4 text-xl border-b border-black pb-4">
                 <h6>Based in Malang, Indonesia</h6>
                 <HiOutlineArrowLongRight />
