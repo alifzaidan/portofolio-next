@@ -15,7 +15,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" className="scroll-smooth">
-            <body className="font-acumin">
+            <body className="font-acumin bg-primary">
                 <Navbar />
                 {children}
             </body>

@@ -5,12 +5,10 @@ import Projects from '@/components/layouts/Projects';
 
 export default function Home() {
     return (
-        <body>
-            <main>
-                <MainSection />
-                <Projects />
-                <Footer />
-            </main>
-        </body>
+        <main>
+            <MainSection />
+            <Projects />
+            <Footer />
+        </main>
     );
 }

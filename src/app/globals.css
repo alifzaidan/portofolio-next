@@ -45,23 +45,6 @@
     }
 }
 
-:root {
-    --foreground-rgb: 0, 0, 0;
-    --background-rgb: 224, 224, 219;
-}
-
-@media (prefers-color-scheme: dark) {
-    :root {
-        /* --foreground-rgb: 224, 224, 219;
-        --background-rgb: 0, 0, 0; */
-    }
-}
-
-body {
-    color: rgb(var(--foreground-rgb));
-    background: rgb(var(--background-rgb));
-}
-
 .text-v {
     writing-mode: vertical-rl;
 }
