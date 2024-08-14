@@ -4,7 +4,7 @@ export default function Projects() {
     return (
         <main>
             <section>
-                <div className="border-b-2 border-black bg-gradient-to-b from-tertiary to-transparent">
+                <div className="border-b-2 border-tertiary bg-gradient-to-b from-tertiary to-transparent">
                     <div className="container pt-16 pb-8 space-y-2 text-white">
                         <h1 className="font-degular md:text-6xl text-5xl font-medium">My Projects</h1>
                         <p className="md:text-xl">Here are some of the projects I&apos;ve worked on. Click on the project to view more details</p>
