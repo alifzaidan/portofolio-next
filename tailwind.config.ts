@@ -14,6 +14,9 @@ const config: Config = {
                 degular: ['Degular', 'sans-serif'],
                 acumin: ['Acumin Pro', 'sans-serif'],
             },
+            backgroundImage: {
+                project: "url('/assets/img/project-display.jpg')",
+            },
         },
         container: {
             center: true,
