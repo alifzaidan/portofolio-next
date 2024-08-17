@@ -1,6 +1,17 @@
+'use client';
+
 import { ProjectCard } from '@/components/ui/ProjectCard';
+import useSWR from 'swr';
+
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 export default function Projects() {
+    const { data } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/api/projects`, fetcher);
+
+    const projects = {
+        data: data?.data || [],
+    };
+
     return (
         <main>
             <section>
@@ -17,30 +28,16 @@ export default function Projects() {
                         image="/assets/img/project.png"
                         link="/projects/project1"
                     />
-                    <ProjectCard
-                        title="Project 2"
-                        description="This is a project I worked on"
-                        image="/assets/img/project.png"
-                        link="/projects/project2"
-                    />
-                    <ProjectCard
-                        title="Project 3"
-                        description="This is a project I worked on"
-                        image="/assets/img/project.png"
-                        link="/projects/project3"
-                    />
-                    <ProjectCard
-                        title="Project 3"
-                        description="This is a project I worked on"
-                        image="/assets/img/project.png"
-                        link="/projects/project3"
-                    />
-                    <ProjectCard
-                        title="Project 3"
-                        description="This is a project I worked on"
-                        image="/assets/img/project.png"
-                        link="/projects/project3"
-                    />
+                    {projects.data?.length > 0 &&
+                        projects.data.map((project: any) => (
+                            <ProjectCard
+                                key={project.id}
+                                title={project.title}
+                                description={project.tagline}
+                                image={project.image}
+                                link={`/projects/${project.id}`}
+                            />
+                        ))}
                 </div>
             </section>
         </main>

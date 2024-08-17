@@ -1,50 +1,66 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { HiOutlineArrowLongLeft, HiOutlineArrowLongRight } from 'react-icons/hi2';
+import useSWR from 'swr';
 
-export default function DetailProject() {
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
+
+export default function DetailProject(props: any) {
+    const { params } = props;
+    const { data } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/api/projects?id=${params.detail}`, fetcher);
+
+    const project = {
+        data: data?.data || [],
+    };
+
     return (
-        <main>
+        <main key={project.data?.id}>
             <section>
                 <div className="border-b-2 border-black bg-gradient-to-b from-[#357B24] to-transparent">
                     <div className="container md:h-screen flex flex-col justify-center">
-                        <h1 className="md:text-8xl text-7xl text-white font-degular font-medium md:mb-28 mb-16">Ecocycle</h1>
+                        <h1 className="md:text-8xl text-7xl text-white font-degular font-medium md:mb-28 mb-16">{project.data?.title}</h1>
                         <ul className="space-y-2">
                             <li className="flex items-center gap-4 md:text-xl text-white">
                                 <h6>Platform</h6>
                                 <HiOutlineArrowLongRight />
-                                <h6 className="font-bold">Mobile App</h6>
+                                <h6 className="font-bold">{project.data?.platform}</h6>
                             </li>
                             <li className="flex items-center gap-4 md:text-xl text-white">
                                 <h6>Client</h6>
                                 <HiOutlineArrowLongRight />
-                                <h6 className="font-bold">Personal Project</h6>
+                                <h6 className="font-bold">{project.data?.client}</h6>
                             </li>
                             <li className="flex items-center gap-4 md:text-xl text-white">
                                 <h6>Timeline</h6>
                                 <HiOutlineArrowLongRight />
-                                <h6 className="font-bold">Mar 2023 - Aug 2023</h6>
+                                <h6 className="font-bold">{project.data?.timeline}</h6>
                             </li>
                         </ul>
                     </div>
                 </div>
                 <div className="container py-24 border-b-2 border-black">
                     <div className="w-4/5">
-                        <h2 className="text-4xl font-degular text-white bg-[#357B24] inline leading-relaxed">
-                            A mobile app that uses camera detection to identify waste and provides recycling tutorials.
-                        </h2>
+                        <h2 className="text-4xl font-degular text-white bg-[#357B24] inline leading-relaxed">{project.data?.shortDescription}</h2>
                     </div>
                     <div className="w-2/3">
                         <h6 className="mt-16 mb-6 text-2xl font-degular font-semibold">Description App</h6>
-                        <p>
-                            Ecocycle is a mobile application designed to address the global issue of waste management. By leveraging camera detection
-                            technology, the app allows users to identify different types of waste and provides step-by-step tutorials on how to
-                            recycle them properly.
-                            <br />
-                            <br />
-                            The app aims to enhance user awareness and engagement in recycling processes, offering an intuitive and user-friendly
-                            solution that helps users make a positive environmental impact.
-                        </p>
+                        {project.data?.longDescription ? (
+                            project.data.longDescription.split('\n').map((paragraph: any, index: any) => (
+                                <p key={index}>
+                                    {paragraph}
+                                    {index < project.data.longDescription.split('\n').length - 1 && (
+                                        <>
+                                            <br />
+                                            <br />
+                                        </>
+                                    )}
+                                </p>
+                            ))
+                        ) : (
+                            <p>No description available.</p>
+                        )}
                     </div>
                 </div>
                 <div className="container h-96 bg-project bg-cover bg-center border-b-2 border-black"></div>
@@ -55,31 +71,37 @@ export default function DetailProject() {
                             <h6>Background & Problem</h6>
                         </div>
                         <div className="col-span-2">
-                            <p className="mb-8">
-                                Waste management and environmental sustainability are pressing global issues. Many people lack the awareness or
-                                knowledge of how to recycle waste correctly.
-                                <br />
-                                <br />
-                                The lack of understanding and easily accessible tools for recycling waste has led to poor waste management, which
-                                negatively impacts the environment.
-                                <br />
-                                <br />
-                                People are often confused about which types of waste can be recycled and how to recycle them properly.
-                            </p>
-                            <div className="flex gap-4">
+                            <div className="mb-8">
+                                {project.data?.problem?.description ? (
+                                    project.data.problem?.description.split('\n').map((paragraph: any, index: any) => (
+                                        <p key={index}>
+                                            {paragraph}
+                                            {index < project.data.problem?.description.split('\n').length - 1 && (
+                                                <>
+                                                    <br />
+                                                    <br />
+                                                </>
+                                            )}
+                                        </p>
+                                    ))
+                                ) : (
+                                    <p>No description available.</p>
+                                )}
+                            </div>
+                            <div className="flex gap-5">
                                 <Image
-                                    src={'/assets/img/project.png'}
+                                    src={project.data?.problem?.firstImage}
                                     alt={'Project'}
                                     width={1000}
                                     height={1000}
-                                    className="w-full h-52 object-cover bg-[#357B24]"
+                                    className="w-full h-72 object-cover"
                                 />
                                 <Image
-                                    src={'/assets/img/project.png'}
+                                    src={project.data?.problem?.secondImage}
                                     alt={'Project'}
                                     width={1000}
                                     height={1000}
-                                    className="w-full h-52 object-cover bg-[#357B24]"
+                                    className="w-full h-72 object-cover"
                                 />
                             </div>
                         </div>
@@ -88,32 +110,37 @@ export default function DetailProject() {
                             <h6>Solution Overview</h6>
                         </div>
                         <div className="col-span-2">
-                            <p className="mb-8">
-                                To increase public awareness and participation in recycling processes through an app that simplifies waste
-                                identification and provides step-by-step guidance.
-                                <br />
-                                <br />
-                                The Ecocycle app uses camera technology to detect different types of waste. Once detected, the app offers detailed
-                                tutorials on how to recycle that waste.
-                                <br />
-                                <br />
-                                The integration of image recognition technology for waste detection and in-app tutorial provision makes Ecocycle stand
-                                out from other recycling apps.
-                            </p>
-                            <div className="flex gap-4">
+                            <div className="mb-8">
+                                {project.data?.solution?.description ? (
+                                    project.data.solution?.description.split('\n').map((paragraph: any, index: any) => (
+                                        <p key={index}>
+                                            {paragraph}
+                                            {index < project.data.solution?.description.split('\n').length - 1 && (
+                                                <>
+                                                    <br />
+                                                    <br />
+                                                </>
+                                            )}
+                                        </p>
+                                    ))
+                                ) : (
+                                    <p>No description available.</p>
+                                )}
+                            </div>
+                            <div className="flex gap-5">
                                 <Image
-                                    src={'/assets/img/project.png'}
+                                    src={project.data?.solution?.firstImage}
                                     alt={'Project'}
                                     width={1000}
                                     height={1000}
-                                    className="w-full h-52 object-cover bg-[#357B24]"
+                                    className="w-full h-72 object-cover"
                                 />
                                 <Image
-                                    src={'/assets/img/project.png'}
+                                    src={project.data?.solution?.secondImage}
                                     alt={'Project'}
                                     width={1000}
                                     height={1000}
-                                    className="w-full h-52 object-cover bg-[#357B24]"
+                                    className="w-full h-72 object-cover"
                                 />
                             </div>
                         </div>
@@ -122,34 +149,24 @@ export default function DetailProject() {
                             <h6>Key Feature</h6>
                         </div>
                         <div className="col-span-2">
-                            <p className="">
-                                My final high fidelity screens with a live prototype below. Designed for the iPhone X to stay up to date with latest
-                                tech and design updates.
-                            </p>
+                            <p className="">{project.data?.keyFeature?.description}</p>
                         </div>
                     </div>
                     <div className="grid grid-cols-2 gap-y-4">
-                        <div className="row-start-1 col-start-1 flex items-center gap-4">
-                            <Image src={'/assets/img/project.png'} alt={'Project'} width={1000} height={1000} className="w-full h-52 object-cover" />
-                            <div className="space-y-2">
-                                <h6 className="font-bold">Waste Detection with Camera</h6>
-                                <p>Users can scan waste with their phone camera, and the app will detect the type of waste.</p>
+                        {project.data?.keyFeature?.features?.map((feature: any, index: any) => (
+                            <div key={index} className={`row-start-${index + 1} col-start-${index % 2 === 0 ? 1 : 2} flex items-center gap-4`}>
+                                {index % 2 === 0 && (
+                                    <Image src={feature.image} alt={feature.title} width={1000} height={1000} className="w-full h-52 object-cover" />
+                                )}
+                                <div className={`space-y-2 ${index % 2 === 0 ? '' : 'text-right'}`}>
+                                    <h6 className="font-bold">{feature.title}</h6>
+                                    <p>{feature.description}</p>
+                                </div>
+                                {index % 2 !== 0 && (
+                                    <Image src={feature.image} alt={feature.title} width={1000} height={1000} className="w-full h-52 object-cover" />
+                                )}
                             </div>
-                        </div>
-                        <div className="row-start-2 col-start-2 flex items-center gap-4">
-                            <div className="space-y-2 text-right">
-                                <h6 className="font-bold">Waste Detection with Camera2</h6>
-                                <p>Users can scan waste with their phone camera, and the app will detect the type of waste.</p>
-                            </div>
-                            <Image src={'/assets/img/project.png'} alt={'Project'} width={1000} height={1000} className="w-full h-52 object-cover" />
-                        </div>
-                        <div className="row-start-3 col-start-1 flex items-center gap-4">
-                            <Image src={'/assets/img/project.png'} alt={'Project'} width={1000} height={1000} className="w-full h-52 object-cover" />
-                            <div className="space-y-2">
-                                <h6 className="font-bold">Waste Detection with Camera3</h6>
-                                <p>Users can scan waste with their phone camera, and the app will detect the type of waste.</p>
-                            </div>
-                        </div>
+                        ))}
                     </div>
                 </div>
                 <div className="container py-24 border-b-2 border-black">
@@ -159,22 +176,28 @@ export default function DetailProject() {
                             <li className="flex items-center gap-4 md:text-xl">
                                 <h6>Frontend</h6>
                                 <HiOutlineArrowLongRight />
-                                <h6 className="font-bold">React Native</h6>
+                                {project.data?.techStack?.frontend?.length > 0 && (
+                                    <h6 className="font-bold">{project.data.techStack.frontend.join(', ')}</h6>
+                                )}
                             </li>
                             <li className="flex items-center gap-4 md:text-xl">
                                 <h6>Backend</h6>
                                 <HiOutlineArrowLongRight />
-                                <h6 className="font-bold">Node.js</h6>
+                                {project.data?.techStack?.backend?.length > 0 && (
+                                    <h6 className="font-bold">{project.data.techStack.backend.join(', ')}</h6>
+                                )}
                             </li>
                             <li className="flex items-center gap-4 md:text-xl">
-                                <h6>Database</h6>
+                                <h6>API</h6>
                                 <HiOutlineArrowLongRight />
-                                <h6 className="font-bold">MongoDB</h6>
+                                {project.data?.techStack?.api?.length > 0 && <h6 className="font-bold">{project.data.techStack.api.join(', ')}</h6>}
                             </li>
                             <li className="flex items-center gap-4 md:text-xl">
-                                <h6>Cloud</h6>
+                                <h6>Additional</h6>
                                 <HiOutlineArrowLongRight />
-                                <h6 className="font-bold">AWS</h6>
+                                {project.data?.techStack?.additional?.length > 0 && (
+                                    <h6 className="font-bold">{project.data.techStack.additional.join(', ')}</h6>
+                                )}
                             </li>
                         </ul>
                     </div>
