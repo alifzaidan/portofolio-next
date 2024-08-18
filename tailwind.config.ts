@@ -15,6 +15,7 @@ const config: Config = {
                 acumin: ['Acumin Pro', 'sans-serif'],
             },
             backgroundImage: {
+                pattern: "url('/assets/img/pattern.png')",
                 project: "url('/assets/img/project-display.jpg')",
             },
         },

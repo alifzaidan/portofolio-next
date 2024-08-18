@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 import { FaGithub, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
 import { useEffect, useState } from 'react';
 import { HiMiniBars3BottomRight, HiXMark } from 'react-icons/hi2';
+import { motion } from 'framer-motion';
 
 export default function Navbar() {
     const pathname = usePathname();
@@ -23,7 +24,10 @@ export default function Navbar() {
     }, [menuOpen]);
 
     return (
-        <header
+        <motion.header
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, ease: 'easeOut' }}
             className={`border-b-2 border-black ${
                 pathname === '/contact'
                     ? 'bg-black text-white'
@@ -148,6 +152,6 @@ export default function Navbar() {
                     </div>
                 </nav>
             </div>
-        </header>
+        </motion.header>
     );
 }
