@@ -10,12 +10,15 @@ const fetcher = (url: string) => fetch(url).then((res) => res.json());
 export default function DetailProject(props: any) {
     const { params } = props;
     const { data: projectData, error, isLoading } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/api/projects?id=${params.detail}`, fetcher);
-    const { data: allProjects } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/api/projects`, fetcher); // Mendapatkan semua project
+    const { data: allProjectsData } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/api/projects`, fetcher);
 
     const project = {
         data: projectData?.data || [],
     };
-    const totalProjects = allProjects?.data?.length || 0;
+    const allProject = {
+        data: allProjectsData?.data || [],
+    };
+    const totalProjects = allProjectsData?.data?.length || 0;
 
     if (isLoading) {
         return (
@@ -117,14 +120,14 @@ export default function DetailProject(props: any) {
                                     alt={'Project'}
                                     width={1000}
                                     height={1000}
-                                    className="w-full md:h-72 h-52 object-cover"
+                                    className="md:h-72 h-52 md:w-1/2 object-cover"
                                 />
                                 <Image
                                     src={project.data?.problem?.secondImage}
                                     alt={'Project'}
                                     width={1000}
                                     height={1000}
-                                    className="w-full md:h-72 h-52 object-cover"
+                                    className="md:h-72 h-52 md:w-1/2 object-cover"
                                 />
                             </div>
                         </div>
@@ -156,14 +159,14 @@ export default function DetailProject(props: any) {
                                     alt={'Project'}
                                     width={1000}
                                     height={1000}
-                                    className="w-full md:h-72 h-52 object-cover"
+                                    className="md:h-72 h-52 md:w-1/2 object-contain object-top"
                                 />
                                 <Image
                                     src={project.data?.solution?.secondImage}
                                     alt={'Project'}
                                     width={1000}
                                     height={1000}
-                                    className="w-full md:h-72 h-52 object-cover object-top"
+                                    className="md:h-72 h-52 md:w-1/2 object-contain object-top"
                                 />
                             </div>
                         </div>
@@ -189,10 +192,16 @@ export default function DetailProject(props: any) {
                                         alt={feature.title}
                                         width={1000}
                                         height={1000}
-                                        className="w-full h-52 object-contain md:basis-1/2"
+                                        className={`w-full h-52 object-contain ${
+                                            project.data?.platform === 'website' ? 'md:basis-1/2' : 'md:basis-1/3'
+                                        }`}
                                     />
 
-                                    <div className={`md:basis-1/2 md:space-y-2 text-center ${index % 2 === 0 ? 'xl:text-left' : 'xl:text-right'}`}>
+                                    <div
+                                        className={`${
+                                            project.data?.platform === 'website' ? 'md:basis-1/2' : 'md:basis-2/3'
+                                        } md:space-y-2 text-center ${index % 2 === 0 ? 'xl:text-left' : 'xl:text-right'}`}
+                                    >
                                         <h6 className="font-bold">{feature.title}</h6>
                                         <p>{feature.description}</p>
                                     </div>
@@ -263,7 +272,7 @@ export default function DetailProject(props: any) {
                                 href={`/projects/${project.data?.id + 1}`}
                                 className="font-degular sm:text-3xl text-xl font-medium hover:bg-black hover:text-white transition"
                             >
-                                Project {project.data?.id + 1}
+                                Project {allProject.data?.title}
                             </Link>
                             <HiOutlineArrowLongRight className="text-3xl" />
                         </div>

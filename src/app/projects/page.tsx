@@ -22,22 +22,20 @@ export default function Projects() {
                     </div>
                 </div>
                 <div className="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-16">
-                    <ProjectCard
-                        title="Project 1"
-                        description="This is a project I worked on"
-                        image="/assets/img/project.png"
-                        link="/projects/project1"
-                    />
                     {projects.data?.length > 0 &&
-                        projects.data.map((project: any) => (
-                            <ProjectCard
-                                key={project.id}
-                                title={project.title}
-                                description={project.tagline}
-                                image={project.image}
-                                link={`/projects/${project.id}`}
-                            />
-                        ))}
+                        projects.data
+                            .slice()
+                            .reverse()
+                            .map((project: any) => (
+                                <ProjectCard
+                                    key={project.id}
+                                    title={project.title}
+                                    platform={project.platform}
+                                    description={project.tagline}
+                                    image={project.image}
+                                    link={`/projects/${project.id}`}
+                                />
+                            ))}
                 </div>
             </section>
         </main>
