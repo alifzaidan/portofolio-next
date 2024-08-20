@@ -2,16 +2,33 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect } from 'react';
-import { HiOutlineArrowLongLeft, HiOutlineArrowLongRight } from 'react-icons/hi2';
+import { useEffect, useState } from 'react';
+import { HiOutlineArrowLongLeft, HiOutlineArrowLongRight, HiOutlineArrowLongUp } from 'react-icons/hi2';
 import useSWR from 'swr';
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 export default function DetailProject(props: any) {
+    const [isScrolled, setIsScrolled] = useState(false);
+
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setIsScrolled(window.scrollY > window.innerHeight);
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+
+    const scrollToTop = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
 
     const { params } = props;
     const { data: projectData, error, isLoading } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/api/projects?id=${params.detail}`, fetcher);
@@ -259,6 +276,15 @@ export default function DetailProject(props: any) {
                     </div>
                 </div>
             </section>
+
+            {isScrolled && (
+                <button
+                    onClick={scrollToTop}
+                    className="fixed md:block hidden bottom-16 right-12 p-2 border-2 border-black shadow-lg hover:text-white hover:bg-black hover:border-primary transition duration-200"
+                >
+                    <HiOutlineArrowLongUp size={32} />
+                </button>
+            )}
 
             <footer>
                 <div className="flex justify-between py-6 container ">
