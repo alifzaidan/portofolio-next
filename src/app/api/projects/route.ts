@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 const data = [
     {
         id: 1,
+        isTop: false,
         color: '#D79A57',
         title: 'CookIt',
         shortDescription: 'A food recipe website with a search feature to find recipes and detailed information on ingredients and cooking methods.',
@@ -56,6 +57,7 @@ const data = [
     },
     {
         id: 2,
+        isTop: false,
         color: '#762F67',
         title: 'Ineat Group',
         shortDescription: 'A youth business website offering shoe cleaning services, selling sambal, and providing custom shoe coloring services.',
@@ -109,6 +111,7 @@ const data = [
     },
     {
         id: 3,
+        isTop: false,
         color: '#3153D4',
         title: 'Lask News App',
         shortDescription:
@@ -168,6 +171,7 @@ const data = [
     },
     {
         id: 4,
+        isTop: true,
         color: '#1D6364',
         title: 'Ecocycle',
         shortDescription:
@@ -227,6 +231,7 @@ const data = [
     },
     {
         id: 5,
+        isTop: false,
         color: '#028BAB',
         title: 'Maturity BLU',
         shortDescription:
@@ -283,6 +288,7 @@ const data = [
     },
     {
         id: 6,
+        isTop: true,
         color: '#E01E26',
         title: 'Cardion',
         shortDescription:
@@ -345,6 +351,7 @@ const data = [
     },
     {
         id: 7,
+        isTop: true,
         color: '#004080',
         title: 'BRI Customer Queue',
         shortDescription: 'A digital solution for managing customer queues at banks, designed to enhance efficiency and customer experience.',
@@ -404,6 +411,7 @@ const data = [
     },
     {
         id: 8,
+        isTop: false,
         color: '#FF6F00',
         title: 'Scoreboard Quiz Game',
         shortDescription:
