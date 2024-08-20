@@ -1,6 +1,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { RiArrowRightUpLine } from 'react-icons/ri';
+import { motion, useAnimation, useMotionValue, useScroll, useSpring, useTransform } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
+import { useEffect, useState, useRef, forwardRef } from 'react';
 
 interface ProjectCardProps {
     title: string;
@@ -11,6 +14,51 @@ interface ProjectCardProps {
 }
 
 export const ProjectList: React.FC<ProjectCardProps> = ({ title, description, platform, image, link }) => {
+    const controls = useAnimation();
+    const { ref: motionRef, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
+    const { scrollY } = useScroll();
+    const [hovered, setHovered] = useState(false);
+    const linkRef = useRef<HTMLAnchorElement>(null);
+
+    const scale = useTransform(scrollY, [0, 2000], [1, 0.8]);
+
+    useEffect(() => {
+        if (inView) {
+            controls.start('visible');
+        }
+    }, [controls, inView]);
+
+    const variants = {
+        hidden: { opacity: 0, y: -50 },
+        visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
+    };
+
+    const cursorSize = 120;
+
+    const mouseX = useMotionValue(0);
+    const mouseY = useMotionValue(0);
+
+    const smoothX = useSpring(mouseX, { damping: 80, stiffness: 1000 });
+    const smoothY = useSpring(mouseY, { damping: 80, stiffness: 1000 });
+
+    useEffect(() => {
+        const manageMouseMove = (e: MouseEvent) => {
+            if (hovered && linkRef.current) {
+                const rect = linkRef.current.getBoundingClientRect();
+                const x = e.clientX - rect.left - cursorSize / 2;
+                const y = e.clientY - rect.top - cursorSize / 2;
+                mouseX.set(x);
+                mouseY.set(y);
+            }
+        };
+
+        window.addEventListener('mousemove', manageMouseMove);
+
+        return () => {
+            window.removeEventListener('mousemove', manageMouseMove);
+        };
+    }, [hovered, mouseX, mouseY]);
+
     return (
         <div className="xl:ml-24 md:ml-20 flex md:flex-row flex-col-reverse gap-x-12 gap-y-6 justify-center items-center">
             <div className="basis-2/5 md:text-left text-center">
@@ -24,16 +72,35 @@ export const ProjectList: React.FC<ProjectCardProps> = ({ title, description, pl
                     <RiArrowRightUpLine />
                 </div>
             </div>
-            <Link href={link} className="basis-3/5">
-                <Image
-                    src={image}
-                    alt="Project"
-                    width={1200}
-                    height={1200}
-                    className={`rounded-xl md:grayscale md:hover:grayscale-0 transition duration-200 ${
-                        platform === 'Website' ? '' : 'border-2 border-black'
-                    }`}
-                ></Image>
+            <Link
+                href={link}
+                className="relative basis-3/5"
+                ref={linkRef}
+                onMouseEnter={() => setHovered(true)}
+                onMouseLeave={() => setHovered(false)}
+            >
+                {hovered && (
+                    <motion.div
+                        style={{
+                            translateX: smoothX,
+                            translateY: smoothY,
+                            width: cursorSize,
+                            height: cursorSize,
+                        }}
+                        className="absolute pointer-events-none z-10"
+                    >
+                        <RiArrowRightUpLine size={120} />
+                    </motion.div>
+                )}
+                <motion.div initial="hidden" animate={controls} variants={variants} style={{ scale }} ref={motionRef} className="relative z-0">
+                    <Image
+                        src={image}
+                        alt="Project"
+                        width={1200}
+                        height={1200}
+                        className={`rounded-xl hover:opacity-95 transition duration-200 ${platform === 'Website' ? '' : 'border-2 border-black'}`}
+                    />
+                </motion.div>
             </Link>
         </div>
     );
