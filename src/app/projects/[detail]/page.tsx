@@ -2,12 +2,17 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { useEffect } from 'react';
 import { HiOutlineArrowLongLeft, HiOutlineArrowLongRight } from 'react-icons/hi2';
 import useSWR from 'swr';
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 export default function DetailProject(props: any) {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
     const { params } = props;
     const { data: projectData, error, isLoading } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/api/projects?id=${params.detail}`, fetcher);
     const { data: allProjectsData } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/api/projects`, fetcher);
@@ -15,9 +20,11 @@ export default function DetailProject(props: any) {
     const project = {
         data: projectData?.data || [],
     };
+
     const allProject = {
         data: allProjectsData?.data || [],
     };
+
     const totalProjects = allProjectsData?.data?.length || 0;
 
     if (isLoading) {
@@ -38,8 +45,8 @@ export default function DetailProject(props: any) {
 
     return (
         <main key={project.data?.id}>
-            <section className="border-b-2 border-black">
-                <div className="border-b-2 border-black bg-gradient-to-b from-[#357B24] to-transparent">
+            <section className="border-b-2 border-black bg-pattern">
+                <div className="border-b-2 border-black" style={{ background: `linear-gradient(to bottom, ${project.data?.color}, transparent)` }}>
                     <div className="container md:h-screen py-20 flex flex-col justify-center">
                         <h1 className="md:text-8xl text-7xl text-white font-degular font-medium md:mb-28 mb-16">{project.data?.title}</h1>
                         <ul className="space-y-2">
@@ -64,7 +71,7 @@ export default function DetailProject(props: any) {
 
                 <div className="container md:py-24 py-16">
                     <div className="md:w-4/5">
-                        <h2 className="md:text-4xl text-2xl font-degular text-white bg-[#357B24] inline leading-relaxed">
+                        <h2 className="md:text-4xl text-2xl font-degular text-white inline" style={{ backgroundColor: project.data?.color }}>
                             {project.data?.shortDescription}
                         </h2>
                     </div>
@@ -93,7 +100,7 @@ export default function DetailProject(props: any) {
                 <div className="container md:py-24 py-12">
                     <div className="grid lg:grid-cols-3 lg:gap-y-24 md:gap-y-10 gap-y-5 mb-12">
                         <div className="font-degular font-semibold text-2xl flex md:gap-12 gap-6">
-                            <h6 className="text-[#357B24]">01</h6>
+                            <h6 style={{ color: project.data?.color }}>01</h6>
                             <h6>Background & Problem</h6>
                         </div>
                         <div className="col-span-2 lg:mb-0 mb-8">
@@ -132,7 +139,7 @@ export default function DetailProject(props: any) {
                             </div>
                         </div>
                         <div className="font-degular font-semibold text-2xl flex md:gap-12 gap-6">
-                            <h6 className="text-[#357B24]">02</h6>
+                            <h6 style={{ color: project.data?.color }}>02</h6>
                             <h6>Solution Overview</h6>
                         </div>
                         <div className="col-span-2 lg:mb-0 mb-8">
@@ -171,7 +178,7 @@ export default function DetailProject(props: any) {
                             </div>
                         </div>
                         <div className="font-degular font-semibold text-2xl flex gap-12">
-                            <h6 className="text-[#357B24]">03</h6>
+                            <h6 style={{ color: project.data?.color }}>03</h6>
                             <h6>Key Feature</h6>
                         </div>
                         <div className="col-span-2">
@@ -193,13 +200,13 @@ export default function DetailProject(props: any) {
                                         width={1000}
                                         height={1000}
                                         className={`w-full h-52 object-contain ${
-                                            project.data?.platform === 'website' ? 'md:basis-1/2' : 'md:basis-1/3'
+                                            project.data?.platform === 'Website' ? 'md:basis-1/2' : 'md:basis-1/3'
                                         }`}
                                     />
 
                                     <div
                                         className={`${
-                                            project.data?.platform === 'website' ? 'md:basis-1/2' : 'md:basis-2/3'
+                                            project.data?.platform === 'Website' ? 'md:basis-1/2' : 'md:basis-2/3'
                                         } md:space-y-2 text-center ${index % 2 === 0 ? 'xl:text-left' : 'xl:text-right'}`}
                                     >
                                         <h6 className="font-bold">{feature.title}</h6>
@@ -214,7 +221,9 @@ export default function DetailProject(props: any) {
 
                 <div className="border-t-2 border-black">
                     <div className="container md:py-24 py-12">
-                        <h2 className="md:text-4xl text-2xl font-degular text-white bg-[#357B24] inline leading-relaxed">Technology Stack</h2>
+                        <h2 className="md:text-4xl text-2xl font-degular text-white inline" style={{ backgroundColor: project.data?.color }}>
+                            Technology Stack
+                        </h2>
                         <div>
                             <ul className="md:mt-12 mt-6 grid md:grid-cols-2 grid-cols-1 gap-4">
                                 <li className="flex items-center gap-4 md:text-xl">
@@ -253,26 +262,26 @@ export default function DetailProject(props: any) {
 
             <footer>
                 <div className="flex justify-between py-6 container ">
-                    {params.detail > 1 ? (
+                    {params.detail < totalProjects ? (
                         <div className="flex items-center gap-4">
                             <HiOutlineArrowLongLeft className="text-3xl" />
                             <Link
-                                href={`/projects/${project.data?.id - 1}`}
+                                href={`/projects/${project.data?.id + 1}`}
                                 className="font-degular sm:text-3xl text-xl font-medium hover:bg-black hover:text-white transition"
                             >
-                                Project {project.data?.id - 1}
+                                {allProject.data?.[project.data?.id]?.title}
                             </Link>
                         </div>
                     ) : (
                         <div></div>
                     )}
-                    {params.detail < totalProjects ? (
+                    {params.detail > 1 ? (
                         <div className="flex items-center gap-4">
                             <Link
-                                href={`/projects/${project.data?.id + 1}`}
+                                href={`/projects/${project.data?.id - 1}`}
                                 className="font-degular sm:text-3xl text-xl font-medium hover:bg-black hover:text-white transition"
                             >
-                                Project {allProject.data?.title}
+                                {allProject.data?.[project.data?.id - 2]?.title}
                             </Link>
                             <HiOutlineArrowLongRight className="text-3xl" />
                         </div>

@@ -14,7 +14,7 @@ export default function Projects() {
 
     return (
         <main>
-            <section>
+            <section className="bg-pattern">
                 <div className="border-b-2 border-tertiary bg-gradient-to-b from-tertiary to-transparent">
                     <div className="container pt-16 pb-8 space-y-2 text-white">
                         <h1 className="font-degular md:text-6xl text-5xl font-medium">My Projects</h1>
@@ -34,6 +34,7 @@ export default function Projects() {
                                     description={project.tagline}
                                     image={project.image}
                                     link={`/projects/${project.id}`}
+                                    color={project.color}
                                 />
                             ))}
                 </div>

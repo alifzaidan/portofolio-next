@@ -4,7 +4,7 @@ import { RiArrowRightUpLine } from 'react-icons/ri';
 export default function Contact() {
     return (
         <main>
-            <section>
+            <section className="bg-pattern">
                 <div className="border-b-2 border-black bg-gradient-to-b from-black to-transparent">
                     <div className="container pt-16 pb-8 space-y-2 text-white">
                         <h1 className="font-degular md:text-6xl text-5xl font-medium">Contact Me</h1>

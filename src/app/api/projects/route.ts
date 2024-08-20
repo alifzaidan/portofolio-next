@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 const data = [
     {
         id: 1,
+        color: '#D79A57',
         title: 'CookIt',
         shortDescription: 'A food recipe website with a search feature to find recipes and detailed information on ingredients and cooking methods.',
         longDescription:
@@ -55,6 +56,7 @@ const data = [
     },
     {
         id: 2,
+        color: '#762F67',
         title: 'Ineat Group',
         shortDescription: 'A youth business website offering shoe cleaning services, selling sambal, and providing custom shoe coloring services.',
         longDescription: `Ineat Group is a dynamic youth-driven business that embodies the entrepreneurial spirit of its founders, Imam, Nauzal, Enggar, Alif, and Thoriq. The vision of business is creating delicious and innovative sambal varieties, as well as offering premium quality shoe cleaning and clothing painting services. \n Ineat Group aims to make a mark in the local business scene, offering products and services that resonate with their audience's needs and preferences.`,
@@ -107,6 +109,7 @@ const data = [
     },
     {
         id: 3,
+        color: '#3153D4',
         title: 'Lask News App',
         shortDescription:
             'A modern and intuitive news app offering the latest updates from reliable sources, with a gamified level system to motivate users.',
@@ -165,6 +168,7 @@ const data = [
     },
     {
         id: 4,
+        color: '#1D6364',
         title: 'Ecocycle',
         shortDescription:
             'An innovative mobile app that helps users manage waste by providing recycling tutorials and connecting them with local recyclers.',
@@ -223,6 +227,7 @@ const data = [
     },
     {
         id: 5,
+        color: '#028BAB',
         title: 'Maturity BLU',
         shortDescription:
             'A comprehensive evaluation tool for faculties at UIN Maulana Malik Ibrahim Malang, designed to audit and measure performance across multiple aspects.',
@@ -278,6 +283,7 @@ const data = [
     },
     {
         id: 6,
+        color: '#E01E26',
         title: 'Cardion',
         shortDescription:
             'A comprehensive competition platform designed for medical students, featuring a landing page for information, an admin dashboard, and a participant portal.',
@@ -339,6 +345,7 @@ const data = [
     },
     {
         id: 7,
+        color: '#004080',
         title: 'BRI Customer Queue',
         shortDescription: 'A digital solution for managing customer queues at banks, designed to enhance efficiency and customer experience.',
         longDescription:
@@ -384,7 +391,7 @@ const data = [
                     title: 'Settings',
                     description:
                         'Offers customization options for branch-specific configurations, including the name, address, videos shown on the display monitor, the number of tellers, and resetting the queue.',
-                    image: '/assets/img/customer-queue/queue-4.png',
+                    image: '/assets/img/customer-queue/queue-5.png',
                 },
             ],
         },
@@ -397,6 +404,7 @@ const data = [
     },
     {
         id: 8,
+        color: '#FF6F00',
         title: 'Scoreboard Quiz Game',
         shortDescription:
             'A web-based scoreboard system for quiz games, featuring participant score display and referee controls for managing the game.',

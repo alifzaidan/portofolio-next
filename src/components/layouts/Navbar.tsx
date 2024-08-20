@@ -6,10 +6,21 @@ import { FaGithub, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
 import { useEffect, useState } from 'react';
 import { HiMiniBars3BottomRight, HiXMark } from 'react-icons/hi2';
 import { motion } from 'framer-motion';
+import useSWR from 'swr';
+
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 export default function Navbar() {
     const pathname = usePathname();
     const [menuOpen, setMenuOpen] = useState(false);
+
+    const match = pathname.match(/^\/projects\/(\d+)$/);
+    const projectId = match ? match[1] : null;
+    const { data, error, isLoading } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/api/projects?id=${projectId}`, fetcher);
+
+    const project = {
+        data: data?.data || [],
+    };
 
     const toggleMenu = () => {
         setMenuOpen(!menuOpen);
@@ -37,6 +48,11 @@ export default function Navbar() {
                     ? 'bg-tertiary text-white border-white'
                     : ''
             }`}
+            style={{
+                backgroundColor: project.data?.id ? project.data?.color : '',
+                color: project.data?.id ? 'white' : '',
+                borderColor: project.data?.id ? 'white' : '',
+            }}
         >
             <nav className="container flex justify-between items-center py-5">
                 <div className="flex gap-12 items-center">
@@ -50,8 +66,8 @@ export default function Navbar() {
                     <div className="hidden md:flex gap-6">
                         <Link
                             href={`${pathname === '/' ? '#projects' : '/projects'} `}
-                            className={`font-degular font-semibold hover:bg-black hover:text-white transition ${
-                                pathname === '/projects' ? 'border-b-2 border-white' : 'border-b-2 border-transparent'
+                            className={`font-degular font-semibold border-b-2 hover:bg-black hover:text-white transition ${
+                                pathname.startsWith('/projects') ? 'border-white' : 'border-transparent'
                             }`}
                         >
                             Project
@@ -59,8 +75,8 @@ export default function Navbar() {
 
                         <Link
                             href={'/about'}
-                            className={`font-degular font-semibold hover:bg-black hover:text-white transition ${
-                                pathname === '/about' ? 'border-b-2 border-black' : 'border-b-2 border-transparent'
+                            className={`font-degular font-semibold border-b-2 hover:bg-black hover:text-white transition ${
+                                pathname === '/about' ? 'border-black' : 'border-transparent'
                             }`}
                         >
                             About
@@ -68,8 +84,8 @@ export default function Navbar() {
 
                         <Link
                             href={'/contact'}
-                            className={`font-degular font-semibold hover:bg-black hover:text-white transition ${
-                                pathname === '/contact' ? 'border-b-2 border-white' : 'border-b-2 border-transparent'
+                            className={`font-degular font-semibold border-b-2 hover:bg-black hover:text-white transition ${
+                                pathname === '/contact' ? 'border-white' : 'border-transparent'
                             }`}
                         >
                             Contact
