@@ -1,5 +1,6 @@
 'use client';
 
+import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
@@ -286,14 +287,15 @@ export default function DetailProject(props: any) {
                 </div>
             </section>
 
-            {isScrolled && (
-                <button
-                    onClick={scrollToTop}
-                    className="fixed md:block hidden bottom-16 right-12 p-2 border-2 border-black shadow-lg hover:text-white hover:bg-black hover:border-primary transition duration-200"
-                >
-                    <HiOutlineArrowLongUp size={32} />
-                </button>
-            )}
+            <motion.button
+                onClick={scrollToTop}
+                className="fixed md:block hidden bottom-16 right-12 p-2 border-2 border-black shadow-lg hover:text-white hover:bg-black hover:border-primary transition duration-200"
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: isScrolled ? 1 : 0, y: isScrolled ? 0 : 50 }}
+                transition={{ duration: 0.5 }}
+            >
+                <HiOutlineArrowLongUp size={32} />
+            </motion.button>
 
             <footer>
                 <div className="flex justify-between py-6 container ">
