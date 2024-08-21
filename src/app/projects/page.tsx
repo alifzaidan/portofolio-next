@@ -6,11 +6,27 @@ import useSWR from 'swr';
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 export default function Projects() {
-    const { data } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/api/projects`, fetcher);
+    const { data, error, isLoading } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/api/projects`, fetcher);
 
     const projects = {
         data: data?.data || [],
     };
+
+    if (isLoading) {
+        return (
+            <div className="flex justify-center items-center h-screen">
+                <div className="text-white">Loading</div>
+            </div>
+        );
+    }
+
+    if (error) {
+        return (
+            <div className="flex justify-center items-center h-screen">
+                <h1 className="text-white">Failed to load data</h1>
+            </div>
+        );
+    }
 
     return (
         <main>

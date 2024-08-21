@@ -14,7 +14,7 @@ const data = [
         timeline: 'Oct 2022 - Nov 2022',
         tagline: 'Discover, Cook, Delight.',
         image: '/assets/img/cookit/cookit-1.png',
-        imageBanner: '/assets/img/cookit/cookit-banner.png',
+        imageBanner: '/assets/img/cookit/cookit-banner.jpg',
         problem: {
             description:
                 'The culinary world is vast and diverse, with countless recipes available online. However, many users find it challenging to locate reliable and easy-to-follow recipes that include comprehensive details on ingredients and cooking methods. This lack of accessible and detailed cooking instructions often leads to frustration and a lack of confidence in the kitchen. \n CookIt addresses this issue by offering a platform where users can easily find and follow recipes, complete with all the necessary information to ensure a successful cooking experience.',
@@ -67,7 +67,7 @@ const data = [
         timeline: 'Mar 2023 - May 2023',
         tagline: 'Innovating Youth Business Ventures with Passion and Creativity',
         image: '/assets/img/ineat/ineat-1.png',
-        imageBanner: '/assets/img/ineat/ineat-banner.png',
+        imageBanner: '/assets/img/ineat/ineat-banner.jpg',
         problem: {
             description:
                 'In a competitive market, young entrepreneurs often struggle to stand out and establish a unique brand identity. The founders of Ineat Group recognized this challenge and sought to create a business that not only meets market demands but also reflects their passion and creativity. \n However, reaching their target audience and effectively communicating the value of their diverse offerings. Ranging from shoe care to culinary products required a strong online presence. Ineat Group website was developed to address these needs, providing a platform that showcases their services and products while building their brand in the digital space.',
@@ -242,7 +242,7 @@ const data = [
         timeline: 'Sep 2023 - Nov 2023',
         tagline: 'Enhancing Performance, Ensuring Quality',
         image: '/assets/img/maturity/maturity-1.png',
-        imageBanner: '/assets/img/maturity/maturity-banner.png',
+        imageBanner: '/assets/img/maturity/maturity-banner.jpg',
         problem: {
             description:
                 'Maintaining high performance and quality standards across faculties is crucial for any educational institution, particularly in aspects like finance and service delivery. Traditional methods of performance evaluation can be inconsistent and prone to errors, leading to difficulties in ensuring that all faculties meet the required standards. \n The Maturity BLU website was created to streamline this process, offering a digital platform that provides clear guidelines and structured levels for evaluating key aspects of faculty performance. This ensures that the evaluation process is both thorough and transparent, helping the university to maintain and improve its overall performance.',
@@ -300,7 +300,7 @@ const data = [
         timeline: 'Apr 2023 - Jun 2023',
         tagline: 'Dare to go Beyond Limits?',
         image: '/assets/img/cardion/cardion-1.png',
-        imageBanner: '/assets/img/cardion/cardion-banner.png',
+        imageBanner: '/assets/img/cardion/cardion-banner.jpg',
         problem: {
             description:
                 'Organizing large-scale academic competitions, such as olympiads and public poster contests, requires efficient management and communication. Traditional methods, often reliant on manual processes, can lead to confusion, delays, and errors, especially when handling participant data and competition submissions. \n The Cardion website was developed to address these issues by providing a centralized digital platform that streamlines all aspects of competition management. This platform ensures that both participants and organizers have a seamless experience, reducing the potential for mistakes and enhancing the overall effectiveness of the event.',
@@ -362,7 +362,7 @@ const data = [
         timeline: 'Jul 2024 - Aug 2024',
         tagline: 'Streamlining Customer Service, One Queue at a Time',
         image: '/assets/img/customer-queue/queue-1.png',
-        imageBanner: '/assets/img/customer-queue/queue-banner.png',
+        imageBanner: '/assets/img/customer-queue/queue-banner.jpg',
         problem: {
             description:
                 'Managing customer queues efficiently is a significant challenge for banks, particularly during peak hours. Long wait times and disorganized queues can lead to customer dissatisfaction and decreased service quality. Traditional manual queue management methods are often insufficient to handle large volumes of customers effectively. \n The BRI Customer Queue application was developed to address these challenges by providing a digital solution that automates and streamlines the queue management process. By implementing this system, banks can reduce customer wait times, improve service flow, and create a more positive customer experience.',
@@ -423,7 +423,7 @@ const data = [
         timeline: 'Aug 2024',
         tagline: 'Keeping Scores, Making Memories',
         image: '/assets/img/scoreboard/scoreboard-1.png',
-        imageBanner: '/assets/img/scoreboard/scoreboard-banner.png',
+        imageBanner: '/assets/img/scoreboard/scoreboard-banner.jpg',
         problem: {
             description:
                 'In competitive quiz games, accurately tracking and displaying scores is crucial for maintaining fairness and transparency. Traditional methods of scorekeeping can be error-prone and time-consuming, leading to potential disputes or confusion among participants. \n The Scoreboard Quiz Game website was developed to address these challenges by providing a digital solution that simplifies score management and enhances the overall experience for both participants and referees. \n The application ensures that scores are updated in real-time, reducing the risk of errors and ensuring that the game runs smoothly.',

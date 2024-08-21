@@ -62,6 +62,12 @@ export default function DetailProject(props: any) {
 
     return (
         <main key={project.data?.id}>
+            <style jsx>{`
+                ::selection {
+                    background-color: ${project.data?.color};
+                    color: #ffffff;
+                }
+            `}</style>
             <section className="border-b-2 border-black bg-pattern">
                 <div className="border-b-2 border-black" style={{ background: `linear-gradient(to bottom, ${project.data?.color}, transparent)` }}>
                     <div className="container md:h-screen py-20 flex flex-col justify-center">
@@ -112,7 +118,10 @@ export default function DetailProject(props: any) {
                     </div>
                 </div>
 
-                <div className="h-96 bg-project bg-cover bg-center border-y-2 border-black"></div>
+                <div
+                    className="h-96 bg-cover bg-center border-y-2 border-black"
+                    style={{ backgroundImage: `url('${project.data?.imageBanner}')` }}
+                ></div>
 
                 <div className="container md:py-24 py-12">
                     <div className="grid lg:grid-cols-3 lg:gap-y-24 md:gap-y-10 gap-y-5 mb-12">
