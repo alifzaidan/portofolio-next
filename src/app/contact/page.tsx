@@ -1,10 +1,13 @@
+'use client';
+
+import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { RiArrowRightUpLine } from 'react-icons/ri';
 
 export default function Contact() {
     return (
         <main>
-            <section className="bg-pattern">
+            <motion.section initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1, ease: 'easeOut' }} className="bg-pattern">
                 <div className="border-b-2 border-black bg-gradient-to-b from-black to-transparent">
                     <div className="container pt-16 pb-8 space-y-2 text-white">
                         <h1 className="font-degular md:text-6xl text-5xl font-medium">Contact Me</h1>
@@ -59,7 +62,7 @@ export default function Contact() {
                         </button>
                     </form>
                 </div>
-            </section>
+            </motion.section>
         </main>
     );
 }

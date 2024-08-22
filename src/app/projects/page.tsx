@@ -1,6 +1,7 @@
 'use client';
 
 import { ProjectCard } from '@/components/ui/ProjectCard';
+import { motion } from 'framer-motion';
 import useSWR from 'swr';
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
@@ -30,14 +31,27 @@ export default function Projects() {
 
     return (
         <main>
-            <section className="bg-pattern">
+            <motion.section initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1, ease: 'easeOut' }} className="bg-pattern">
                 <div className="border-b-2 border-tertiary bg-gradient-to-b from-tertiary to-transparent">
                     <div className="container pt-16 pb-8 space-y-2 text-white">
                         <h1 className="font-degular md:text-6xl text-5xl font-medium">My Projects</h1>
                         <p className="md:text-xl">Here are some of the projects I&apos;ve worked on. Click on the project to view more details</p>
                     </div>
                 </div>
-                <div className="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-16">
+                <motion.div
+                    variants={{
+                        hidden: { opacity: 0 },
+                        show: {
+                            opacity: 1,
+                            transition: {
+                                staggerChildren: 0.5,
+                            },
+                        },
+                    }}
+                    initial="hidden"
+                    animate="show"
+                    className="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-16"
+                >
                     {projects.data?.length > 0 &&
                         projects.data
                             .slice()
@@ -53,8 +67,8 @@ export default function Projects() {
                                     color={project.color}
                                 />
                             ))}
-                </div>
-            </section>
+                </motion.div>
+            </motion.section>
         </main>
     );
 }
