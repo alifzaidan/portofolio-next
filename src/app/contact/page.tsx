@@ -1,10 +1,32 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { sendEmail } from '@/services/send-email';
+import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
+import { useForm } from 'react-hook-form';
 import { RiArrowRightUpLine } from 'react-icons/ri';
+import { useState } from 'react';
+
+export type FormData = {
+    name: string;
+    email: string;
+    message: string;
+};
 
 export default function Contact() {
+    const { register, handleSubmit, reset } = useForm<FormData>();
+    const [isSubmitted, setIsSubmitted] = useState(false);
+
+    function onSubmit(data: FormData) {
+        sendEmail(data);
+        setIsSubmitted(true); // Tampilkan pop-up
+        reset(); // Reset form
+    }
+
+    function closePopup() {
+        setIsSubmitted(false);
+    }
+
     return (
         <main>
             <motion.section initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1, ease: 'easeOut' }} className="bg-pattern">
@@ -20,7 +42,7 @@ export default function Contact() {
                     </div>
                 </div>
                 <div className="container py-8">
-                    <form className="md:w-2/3 space-y-4">
+                    <form onSubmit={handleSubmit(onSubmit)} className="md:w-2/3 space-y-4">
                         <div className="flex md:flex-row flex-col gap-4">
                             <div className="w-full">
                                 <label htmlFor="name" className="block text-lg font-medium mb-2">
@@ -30,6 +52,8 @@ export default function Contact() {
                                     type="text"
                                     id="name"
                                     className="w-full text-xl px-4 py-2 bg-transparent border-2 border-black focus:outline-none"
+                                    {...register('name', { required: true })}
+                                    required
                                 />
                             </div>
                             <div className="w-full">
@@ -40,6 +64,8 @@ export default function Contact() {
                                     type="email"
                                     id="email"
                                     className="w-full text-xl px-4 py-2 bg-transparent border-2 border-black focus:outline-none"
+                                    {...register('email', { required: true })}
+                                    required
                                 />
                             </div>
                         </div>
@@ -48,9 +74,11 @@ export default function Contact() {
                                 Message
                             </label>
                             <textarea
+                                rows={5}
                                 id="message"
                                 className="w-full text-xl px-4 py-2 bg-transparent border-2 border-black focus:outline-none"
-                                rows={5}
+                                {...register('message', { required: true })}
+                                required
                             ></textarea>
                         </div>
                         <button
@@ -63,6 +91,31 @@ export default function Contact() {
                     </form>
                 </div>
             </motion.section>
+
+            <AnimatePresence>
+                {isSubmitted && (
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.8 }}
+                        transition={{ duration: 0.3 }}
+                        className="fixed inset-0 flex items-center justify-center"
+                    >
+                        <motion.div
+                            initial={{ opacity: 0, y: -30 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: 30 }}
+                            className="bg-white p-8 rounded-lg shadow-lg text-center"
+                        >
+                            <h2 className="font-degular text-3xl font-semibold mb-4">Thank You!</h2>
+                            <p className="text-lg">Your message has been sent successfully.</p>
+                            <button onClick={closePopup} className="mt-4 px-4 py-2 bg-black text-white rounded hover:bg-gray-800 transition">
+                                Close
+                            </button>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </main>
     );
 }
