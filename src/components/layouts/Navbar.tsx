@@ -93,13 +93,13 @@ export default function Navbar() {
                     </div>
                 </div>
                 <div className="hidden md:flex gap-6">
-                    <Link href={'https://github.com/alifzaidan'}>
+                    <Link href={'https://github.com/alifzaidan'} target="_blank">
                         <FaGithub className="w-4 h-4 hover:opacity-70 transition" />
                     </Link>
-                    <Link href={'https://www.linkedin.com/in/alifzaidan/'}>
+                    <Link href={'https://www.linkedin.com/in/alifzaidan/'} target="_blank">
                         <FaLinkedinIn className="w-4 h-4 hover:opacity-70 transition" />
                     </Link>
-                    <Link href={'https://instagram.com/zaidanaliff_/'}>
+                    <Link href={'https://instagram.com/zaidanaliff_/'} target="_blank">
                         <FaInstagram className="w-4 h-4 hover:opacity-70 transition" />
                     </Link>
                 </div>

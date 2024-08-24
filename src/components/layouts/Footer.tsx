@@ -10,6 +10,7 @@ export default function Footer() {
                         <HiOutlineArrowLongRight />
                         <Link
                             href={'mailto:muchammadalifzaidan@gmail.com'}
+                            target="_blank"
                             className="font-degular sm:text-xl text-lg font-medium hover:bg-black hover:text-white transition"
                         >
                             Email
@@ -17,7 +18,11 @@ export default function Footer() {
                     </div>
                     <div className="flex items-center">
                         <HiOutlineArrowLongRight />
-                        <Link href={'/'} className="font-degular sm:text-xl text-lg font-medium hover:bg-black hover:text-white transition">
+                        <Link
+                            href={'https://drive.google.com/file/d/1UqvSL6goIAfOb6A-AtUzVNzmT_8AYlQu/view?usp=sharing'}
+                            target="_blank"
+                            className="font-degular sm:text-xl text-lg font-medium hover:bg-black hover:text-white transition"
+                        >
                             Resume
                         </Link>
                     </div>
@@ -25,6 +30,7 @@ export default function Footer() {
                         <HiOutlineArrowLongRight />
                         <Link
                             href={'https://www.linkedin.com/in/alifzaidan/'}
+                            target="_blank"
                             className="font-degular sm:text-xl text-lg font-medium hover:bg-black hover:text-white transition"
                         >
                             Linkedin
@@ -34,6 +40,7 @@ export default function Footer() {
                         <HiOutlineArrowLongRight />
                         <Link
                             href={'https://instagram.com/zaidanaliff_/'}
+                            target="_blank"
                             className="font-degular sm:text-xl text-lg font-medium hover:bg-black hover:text-white transition"
                         >
                             Instagram
@@ -43,6 +50,7 @@ export default function Footer() {
                         <HiOutlineArrowLongRight />
                         <Link
                             href={'https://github.com/alifzaidan'}
+                            target="_blank"
                             className="font-degular sm:text-xl text-lg font-medium hover:bg-black hover:text-white transition"
                         >
                             Github
@@ -50,7 +58,7 @@ export default function Footer() {
                     </div>
                 </div>
                 <div className="w-full text-right lg:grid grid-cols-1 gap-2">
-                    <p className="font-degular sm:text-xl text-lg font-medium">Updated 10/24</p>
+                    <p className="font-degular sm:text-xl text-lg font-medium">Updated 08/24</p>
                     <p className="font-degular sm:text-xl text-lg font-medium">Muchammad Alif Zaidan</p>
                 </div>
             </div>

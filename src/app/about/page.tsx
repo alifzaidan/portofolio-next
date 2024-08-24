@@ -62,7 +62,7 @@ export default function About() {
                         </p>
                         <p>
                             My adventure in technology began during my time in college, and I&apos;m always eager to connect and share experiences.
-                            Feel free to reach out via the links below.
+                            Feel free to reach out via contact page and my social media.
                         </p>
                     </div>
                 </div>
@@ -94,17 +94,17 @@ export default function About() {
                 <hr className="border-black md:my-16 my-10 relative z-10" />
                 <h2 className="font-degular text-4xl font-medium mb-12 relative z-10">Tech Stack</h2>
                 <div className="grid lg:grid-cols-8 sm:grid-cols-6 grid-cols-4 gap-y-12 relative z-10">
-                    <FaHtml5 className="w-12 h-12 transition hover:scale-110" />
-                    <FaCss3Alt className="w-12 h-12 transition hover:scale-110" />
-                    <FaJs className="w-12 h-12 transition hover:scale-110" />
-                    <FaPhp className="w-12 h-12 transition hover:scale-110" />
-                    <FaBootstrap className="w-12 h-12 transition hover:scale-110" />
-                    <RiTailwindCssFill className="w-12 h-12 transition hover:scale-110" />
-                    <FaReact className="w-12 h-12 transition hover:scale-110" />
-                    <SiNextdotjs className="w-12 h-12 transition hover:scale-110" />
-                    <FaLaravel className="w-12 h-12 transition hover:scale-110" />
-                    <RiFlutterFill className="w-12 h-12 transition hover:scale-110" />
-                    <FaFigma className="w-12 h-12 transition hover:scale-110" />
+                    <FaHtml5 className="w-12 h-12 transition duration-200 md:hover:scale-110" />
+                    <FaCss3Alt className="w-12 h-12 transition duration-200 md:hover:scale-110" />
+                    <FaJs className="w-12 h-12 transition duration-200 md:hover:scale-110" />
+                    <FaPhp className="w-12 h-12 transition duration-200 md:hover:scale-110" />
+                    <FaBootstrap className="w-12 h-12 transition duration-200 md:hover:scale-110" />
+                    <RiTailwindCssFill className="w-12 h-12 transition duration-200 md:hover:scale-110" />
+                    <FaReact className="w-12 h-12 transition duration-200 md:hover:scale-110" />
+                    <SiNextdotjs className="w-12 h-12 transition duration-200 md:hover:scale-110" />
+                    <FaLaravel className="w-12 h-12 transition duration-200 md:hover:scale-110" />
+                    <RiFlutterFill className="w-12 h-12 transition duration-200 md:hover:scale-110" />
+                    <FaFigma className="w-12 h-12 transition duration-200 md:hover:scale-110" />
                 </div>
             </motion.section>
         </main>
