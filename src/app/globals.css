@@ -6,42 +6,42 @@
     @font-face {
         font-family: 'Degular';
         font-weight: 300;
-        src: url('../../public/assets/fonts/Degular-Light.otf') format('opentype');
+        src: url('/assets/fonts/Degular-Light.otf') format('opentype');
     }
     @font-face {
         font-family: 'Degular';
         font-weight: 400;
-        src: url('../../public/assets/fonts/Degular-Regular.otf') format('opentype');
+        src: url('/assets/fonts/Degular-Regular.otf') format('opentype');
     }
     @font-face {
         font-family: 'Degular';
         font-weight: 500;
-        src: url('../../public/assets/fonts/Degular-Medium.otf') format('opentype');
+        src: url('/assets/fonts/Degular-Medium.otf') format('opentype');
     }
     @font-face {
         font-family: 'Degular';
         font-weight: 600;
-        src: url('../../public/assets/fonts/Degular-SemiBold.otf') format('opentype');
+        src: url('/assets/fonts/Degular-SemiBold.otf') format('opentype');
     }
     @font-face {
         font-family: 'Degular';
         font-weight: 700;
-        src: url('../../public/assets/fonts/Degular-Bold.otf') format('opentype');
+        src: url('/assets/fonts/Degular-Bold.otf') format('opentype');
     }
     @font-face {
         font-family: 'Degular';
         font-weight: 900;
-        src: url('../../public/assets/fonts/Degular-Black.otf') format('opentype');
+        src: url('/assets/fonts/Degular-Black.otf') format('opentype');
     }
     @font-face {
         font-family: 'Acumin Pro';
         font-weight: 400;
-        src: url('../../public/assets/fonts/Acumin-RPro.otf') format('opentype');
+        src: url('/assets/fonts/Acumin-RPro.otf') format('opentype');
     }
     @font-face {
         font-family: 'Acumin Pro';
         font-weight: 700;
-        src: url('../../public/assets/fonts/Acumin-BdPro.otf') format('opentype');
+        src: url('/assets/fonts/Acumin-BdPro.otf') format('opentype');
     }
 }
 
