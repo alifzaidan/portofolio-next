@@ -54,7 +54,7 @@ export default function Navbar() {
                 borderColor: project.data?.id ? 'white' : '',
             }}
         >
-            <nav className="container flex justify-between items-center py-5">
+            <nav className="container bg-pattern flex justify-between items-center py-5">
                 <div className="flex gap-12 items-center">
                     <Link
                         href={'/'}
@@ -113,7 +113,7 @@ export default function Navbar() {
 
             {/* Mobile Menu */}
             <div
-                className={`md:hidden transition-opacity transform duration-500 fixed top-16 right-0 h-screen w-full ${
+                className={`md:hidden transition-opacity transform duration-500 fixed top-16 right-0 h-screen w-full z-20 ${
                     menuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
                 }  ${
                     pathname === '/contact'
@@ -125,7 +125,7 @@ export default function Navbar() {
                         : 'bg-primary'
                 }`}
             >
-                <nav className="flex flex-col items-center justify-evenly gap-6 h-full">
+                <nav className="flex flex-col items-center justify-evenly gap-6 h-full bg-pattern">
                     <div className="flex flex-col items-center gap-4">
                         <Link
                             href={`${pathname === '/' ? '#projects' : '/projects'} `}

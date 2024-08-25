@@ -68,7 +68,7 @@ export default function MainSection() {
                     left: smoothMouse.x,
                     top: smoothMouse.y,
                 }}
-                className="absolute w-[28rem] h-[28rem] bg-tertiary shadow-white shadow-2xl blur-[120px] hsa rounded-full pointer-events-none -translate-x-1/2 -translate-y-1/2 -z-10"
+                className="absolute w-[28rem] h-[28rem] bg-tertiary shadow-white shadow-2xl blur-[120px] rounded-full pointer-events-none -translate-x-1/2 -translate-y-1/2 -z-10"
             ></motion.div>
             <div className="container md:h-screen md:my-0 my-20 flex flex-col justify-center">
                 <div className="flex items-center gap-4 md:text-xl border-b border-black pb-4">
@@ -94,7 +94,9 @@ export default function MainSection() {
                         <h6 className="font-bold">
                             Frontend Web Developer @{' '}
                             <span className="py-1 hover:bg-black hover:text-white transition">
-                                <Link href={'https://www.linkedin.com/company/ekata-tech/mycompany/'}>Ekata</Link>
+                                <Link href={'https://www.linkedin.com/company/ekata-tech/mycompany/'} target="_blank">
+                                    Ekata
+                                </Link>
                             </span>
                         </h6>
                     </li>
