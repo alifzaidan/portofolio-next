@@ -95,7 +95,7 @@ export const ProjectList: React.FC<ProjectCardProps> = ({ title, description, pl
                 <motion.div initial="hidden" animate={controls} variants={variants} style={{ scale }} ref={motionRef} className="relative z-0">
                     <Image
                         src={image}
-                        alt="Project"
+                        alt={title}
                         width={1200}
                         height={1200}
                         className={`rounded-xl hover:opacity-95 transition duration-200 ${platform === 'Website' ? '' : 'border-2 border-black'}`}

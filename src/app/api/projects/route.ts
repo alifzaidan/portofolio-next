@@ -469,6 +469,66 @@ const data = [
             additional: ['-'],
         },
     },
+    {
+        id: 9,
+        isTop: true,
+        color: '#63343E',
+        title: 'Wedding Invitation',
+        shortDescription:
+            'A wedding invitation website with personalized features for guests, including a welcome screen, profile of the couple, schedule, gallery, RSVP, and best wishes form.',
+        longDescription:
+            'Wedding Invitation is a digital platform built to simplify the process of sharing wedding details with guests in an elegant and engaging way. The website is developed using Next.js for a smooth user experience and TailwindCSS for a responsive design. It also incorporates Framer Motion to add fluid animations, creating a dynamic experience for visitors. The platform provides several sections such as a personalized welcome screen displaying the guests name, a profile of the couple, the wedding schedule, the venue location, a photo gallery, a love story, RSVP functionality, gift delivery options, and a form for sending best wishes.',
+        platform: 'Website',
+        client: 'Izza & Risky',
+        timeline: 'Oct 2024 - Sep 2024',
+        tagline: 'Sakinah, Mawaddah, Wa Rahmah',
+        image: '/assets/img/wedding-invitation/wedding-1.png',
+        imageBanner: '/assets/img/wedding-invitation/wedding-banner.jpg',
+        problem: {
+            description:
+                'Physical invitations require significant costs for printing and take a lot of time for distribution. Additionally, physical invitations do not offer interactive features like RSVP and best wishes forms, which can facilitate communication between the couple and guests. \n Wedding Invitation addresses these issues by offering a digital solution that is more cost-effective, efficient, and equipped with features not found in traditional invitations, such as RSVP and a form for sending well wishes.',
+            firstImage: '/assets/img/wedding-invitation/problem-1.jpg',
+            secondImage: '/assets/img/wedding-invitation/problem-2.jpg',
+        },
+        solution: {
+            description:
+                'Wedding Invitation offers an interactive and personalized platform for couples to invite guests to their special day. The website includes dynamic elements such as a personalized welcome screen, a profile section showcasing the couple’s social media, and an RSVP form linked to a database for easy guest management. \n The website also features a photo gallery with a carousel and grid view to display pre-wedding photos, as well as a form where guests can send their best wishes to the couple.',
+            firstImage: '/assets/img/wedding-invitation/solution-1.png',
+            secondImage: '/assets/img/wedding-invitation/solution-2.png',
+        },
+        keyFeature: {
+            description:
+                'My final high fidelity screens with a live prototype below. Designed for the iPhone X to stay up to date with latest tech and design updates.',
+            features: [
+                {
+                    title: 'Profile Section',
+                    description: 'Showcases the names of the bride and groom along with links to their social media accounts.',
+                    image: '/assets/img/wedding-invitation/wedding-2.png',
+                },
+                {
+                    title: 'Photo Gallery',
+                    description: 'Includes a carousel and grid view of pre-wedding photos, allowing guests to enjoy the couple’s special moments.',
+                    image: '/assets/img/wedding-invitation/wedding-3.png',
+                },
+                {
+                    title: 'RSVP',
+                    description: 'Connects to a database, enabling the couple to track which guests have confirmed their attendance.',
+                    image: '/assets/img/wedding-invitation/wedding-4.png',
+                },
+                {
+                    title: 'Best Wishes Form',
+                    description: 'Allows guests to send personalized messages and well wishes to the couple.',
+                    image: '/assets/img/wedding-invitation/wedding-5.png',
+                },
+            ],
+        },
+        techStack: {
+            frontend: ['HTML', 'CSS', 'Typescript', 'ReactJS', 'Tailwind'],
+            backend: ['NextJS', 'Firebase'],
+            api: ['-'],
+            additional: ['Framer Motion'],
+        },
+    },
 ];
 
 export async function GET(request: NextRequest) {

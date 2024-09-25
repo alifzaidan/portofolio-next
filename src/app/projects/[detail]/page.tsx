@@ -151,14 +151,14 @@ export default function DetailProject(props: any) {
                             <div className="flex md:flex-row flex-col gap-5">
                                 <Image
                                     src={project.data?.problem?.firstImage}
-                                    alt={'Project'}
+                                    alt={'Problem 1'}
                                     width={1000}
                                     height={1000}
                                     className="md:h-72 h-52 md:w-1/2 object-cover"
                                 />
                                 <Image
                                     src={project.data?.problem?.secondImage}
-                                    alt={'Project'}
+                                    alt={'Problem 2'}
                                     width={1000}
                                     height={1000}
                                     className="md:h-72 h-52 md:w-1/2 object-cover"
@@ -190,14 +190,14 @@ export default function DetailProject(props: any) {
                             <div className="flex md:flex-row flex-col gap-5">
                                 <Image
                                     src={project.data?.solution?.firstImage}
-                                    alt={'Project'}
+                                    alt={'Solution 1'}
                                     width={1000}
                                     height={1000}
                                     className="md:h-72 h-52 md:w-1/2 object-contain object-top"
                                 />
                                 <Image
                                     src={project.data?.solution?.secondImage}
-                                    alt={'Project'}
+                                    alt={'Solution 2'}
                                     width={1000}
                                     height={1000}
                                     className="md:h-72 h-52 md:w-1/2 object-contain object-top"
