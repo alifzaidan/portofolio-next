@@ -19,8 +19,8 @@ export default function Contact() {
 
     function onSubmit(data: FormData) {
         sendEmail(data);
-        setIsSubmitted(true); // Tampilkan pop-up
-        reset(); // Reset form
+        setIsSubmitted(true);
+        reset();
     }
 
     function closePopup() {

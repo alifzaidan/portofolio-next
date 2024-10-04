@@ -8,7 +8,8 @@ const config: Config = {
                 primary: '#E0E0DB',
                 secondary: '#609092',
                 tertiary: '#384E77',
-                quaternary: '#FFC000',
+                quaternary: '#E18335',
+                gemini: '#5285D3',
             },
             fontFamily: {
                 degular: ['Degular', 'sans-serif'],

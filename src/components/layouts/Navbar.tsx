@@ -46,6 +46,10 @@ export default function Navbar() {
                     ? 'bg-secondary'
                     : pathname === '/projects'
                     ? 'bg-tertiary text-white border-white'
+                    : pathname === '/playground'
+                    ? 'bg-quaternary'
+                    : pathname === '/playground/gemini'
+                    ? 'bg-gemini'
                     : ''
             }`}
             style={{
@@ -71,6 +75,15 @@ export default function Navbar() {
                             }`}
                         >
                             Project
+                        </Link>
+
+                        <Link
+                            href={'/playground'}
+                            className={`font-degular font-semibold border-b-2 hover:bg-black hover:text-white transition ${
+                                pathname.startsWith('/playground') ? 'border-black' : 'border-transparent'
+                            }`}
+                        >
+                            Playground
                         </Link>
 
                         <Link
@@ -122,8 +135,17 @@ export default function Navbar() {
                         ? 'bg-secondary'
                         : pathname === '/projects'
                         ? 'bg-tertiary'
+                        : pathname === '/playground'
+                        ? 'bg-quaternary'
+                        : pathname === '/playground/gemini'
+                        ? 'bg-gemini'
                         : 'bg-primary'
                 }`}
+                style={{
+                    backgroundColor: project.data?.id ? project.data?.color : '',
+                    color: project.data?.id ? 'white' : '',
+                    borderColor: project.data?.id ? 'white' : '',
+                }}
             >
                 <nav className="flex flex-col items-center justify-evenly gap-6 h-full bg-pattern">
                     <div className="flex flex-col items-center gap-4">
@@ -135,6 +157,15 @@ export default function Navbar() {
                             onClick={toggleMenu}
                         >
                             Project
+                        </Link>
+                        <Link
+                            href={'/playground'}
+                            className={`text-4xl font-degular font-semibold ${
+                                pathname === '/playground' ? 'border-b-2 border-black' : 'border-b-2 border-transparent'
+                            }`}
+                            onClick={toggleMenu}
+                        >
+                            Playground
                         </Link>
                         <Link
                             href={'/about'}
