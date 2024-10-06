@@ -6,42 +6,59 @@ import { useState } from 'react';
 import Base64 from 'base64-js';
 import MarkdownIt from 'markdown-it';
 import Image from 'next/image';
+import { TbPhotoPlus } from 'react-icons/tb';
 
 export default function Gemini() {
     const [prompt, setPrompt] = useState('');
-    const [output, setOutput] = useState('Halo, saya adalah AI chatbot. Silakan masukkan instruksi Anda.');
+    const [output, setOutput] = useState('Hello, I am Gemini AI chatbot. Please enter your instructions.');
     const [isLoading, setIsLoading] = useState(false);
+    const [image, setImage] = useState<File | null>(null);
+    const [chatHistory, setChatHistory] = useState<any[]>([]);
 
-    const API_KEY = 'AIzaSyC8WIw4YdqnO0GFX7HySWZ4yNTkgn3DDDg';
+    const API_KEY = process.env.NEXT_PUBLIC_GEMINI_API_KEY || '';
+
+    const genAI = new GoogleGenerativeAI(API_KEY);
+    const model = genAI.getGenerativeModel({
+        model: 'gemini-1.5-flash',
+        safetySettings: [
+            {
+                category: HarmCategory.HARM_CATEGORY_HARASSMENT,
+                threshold: HarmBlockThreshold.BLOCK_ONLY_HIGH,
+            },
+        ],
+    });
+
+    const chat = model.startChat({
+        history: chatHistory,
+        generationConfig: {
+            maxOutputTokens: 100,
+        },
+    });
+
+    const handleImageUpload = (ev: any) => {
+        setImage(ev.target.files[0]);
+    };
 
     const handleSubmit = async (ev: any) => {
         ev.preventDefault();
         setIsLoading(true);
         setOutput('Generating...');
+        setPrompt('');
 
         try {
-            let imageBase64 = await fetch('https://images.unsplash.com/photo-1505993597083-3bd19fb75e57')
-                .then((r) => r.arrayBuffer())
-                .then((a) => Base64.fromByteArray(new Uint8Array(a)));
+            let imageBase64 = '';
+            if (image) {
+                imageBase64 = await new Promise<string>((resolve, reject) => {
+                    const reader = new FileReader();
+                    reader.onloadend = () => resolve(Base64.fromByteArray(new Uint8Array(reader.result as ArrayBuffer)));
+                    reader.onerror = reject;
+                    reader.readAsArrayBuffer(image);
+                });
+            }
 
-            let contents = [
-                {
-                    role: 'user',
-                    parts: [{ inlineData: { mimeType: 'image/jpeg', data: imageBase64 } }, { text: prompt }],
-                },
-            ];
+            const contents = image ? [{ inlineData: { mimeType: image.type, data: imageBase64 } }, { text: prompt }] : [{ text: prompt }];
 
-            const genAI = new GoogleGenerativeAI(API_KEY);
-            const model = genAI.getGenerativeModel({
-                model: 'gemini-1.5-flash', // or gemini-1.5-pro
-                safetySettings: [
-                    {
-                        category: HarmCategory.HARM_CATEGORY_HARASSMENT,
-                        threshold: HarmBlockThreshold.BLOCK_ONLY_HIGH,
-                    },
-                ],
-            });
-            const result = await model.generateContentStream({ contents });
+            const result = await chat.sendMessageStream(contents);
 
             let buffer = [];
             let md = new MarkdownIt();
@@ -50,6 +67,21 @@ export default function Gemini() {
                 const outputText = md.render(buffer.join(''));
                 setOutput(outputText);
             }
+
+            const newHistory = [
+                ...chatHistory,
+                {
+                    role: 'user',
+                    parts: [{ text: prompt }],
+                },
+                {
+                    role: 'model',
+                    parts: [{ text: buffer.join('') }],
+                },
+            ];
+
+            // Update chatHistory dengan format baru
+            setChatHistory(newHistory);
         } catch (error) {
             console.error('Error generating output:', error);
             setOutput('Error generating output');
@@ -93,8 +125,9 @@ export default function Gemini() {
                             <p className="mt-2" dangerouslySetInnerHTML={{ __html: isLoading ? output + '...' : output }} />
                         </div>
                     </motion.div>
-                    <motion.div variants={{ hidden: { opacity: 0 }, show: { opacity: 1 } }} className="mt-6">
+                    <motion.div variants={{ hidden: { opacity: 0 }, show: { opacity: 1 } }} className="mt-4">
                         <form onSubmit={handleSubmit}>
+                            <span className="text-gray-400 text-sm">{image ? image.name : 'No image selected'}</span>
                             <div className="flex gap-4">
                                 <div className="grow relative w-full">
                                     <input
@@ -103,9 +136,27 @@ export default function Gemini() {
                                         onChange={(e) => setPrompt(e.target.value)}
                                         placeholder="Enter instructions here"
                                         type="text"
+                                        autoComplete="off"
                                         className="absolute w-full py-2 px-4 border-2 border-black bg-white shadow-lg z-10 placeholder-opacity-100 transition-transform duration-300 focus:-translate-x-1 focus:-translate-y-1 focus:placeholder-opacity-0 outline-none"
                                     ></input>
                                     <div className="absolute w-full h-full bg-black"></div>
+                                </div>
+                                <div className="bg-black flex-none">
+                                    <div className="flex justify-between items-center">
+                                        <input
+                                            type="file"
+                                            accept="image/*"
+                                            onChange={handleImageUpload}
+                                            style={{ display: 'none' }}
+                                            id="file-upload"
+                                        />
+                                        <label
+                                            htmlFor="file-upload"
+                                            className="border-2 border-black cursor-pointer bg-white px-3 py-2 shadow-lg transition-transform duration-300 hover:-translate-x-1 hover:-translate-y-1"
+                                        >
+                                            <TbPhotoPlus size={24} />
+                                        </label>
+                                    </div>
                                 </div>
                                 <div className="bg-black flex-none">
                                     <button

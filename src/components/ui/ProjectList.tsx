@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { RiArrowRightUpLine } from 'react-icons/ri';
 import { motion, useAnimation, useMotionValue, useScroll, useSpring, useTransform } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { useEffect, useState, useRef, forwardRef } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 interface ProjectCardProps {
     title: string;

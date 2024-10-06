@@ -28,11 +28,11 @@ export default function Playground() {
                     animate="show"
                     className="container gap-6 my-16"
                 >
-                    <motion.div
-                        variants={{ hidden: { opacity: 0 }, show: { opacity: 1 } }}
-                        className="border-2 border-black bg-white overflow-hidden shadow-lg md:hover:scale-95 transition duration-300"
-                    >
-                        <Link href={'/playground/gemini'} className="flex justify-between items-center">
+                    <motion.div variants={{ hidden: { opacity: 0 }, show: { opacity: 1 } }} className="bg-black shadow-lg">
+                        <Link
+                            href={'/playground/gemini'}
+                            className="flex justify-between items-center border-2 border-black bg-white overflow-hidden transition-transform duration-300 hover:-translate-x-1 hover:-translate-y-1"
+                        >
                             <div className="h-full px-5 py-3">
                                 <h3 className="font-degular md:text-3xl text-2xl font-semibold text-gemini">AI Chatbot with Gemini</h3>
                                 <p className="mt-2 md:text-lg text-base">Simple generative AI app with the Gemini API</p>
