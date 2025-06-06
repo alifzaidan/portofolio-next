@@ -92,10 +92,13 @@ export default function MainSection() {
                         <h6>Currently</h6>
                         <HiOutlineArrowLongRight />
                         <h6 className="font-bold">
-                            Frontend Web Developer @{' '}
+                            Fullstack Web Developer @{' '}
                             <span className="py-1 hover:bg-black hover:text-white transition">
-                                <Link href={'https://www.linkedin.com/company/ekata-tech/mycompany/'} target="_blank">
-                                    Ekata
+                                <Link
+                                    href={'https://aksarateknologi.co.id/'}
+                                    target="_blank"
+                                >
+                                    Aksara Teknologi Mandiri
                                 </Link>
                             </span>
                         </h6>
@@ -103,7 +106,9 @@ export default function MainSection() {
                     <li className="flex items-center gap-4 md:text-xl">
                         <h6>Passionate</h6>
                         <HiOutlineArrowLongRight />
-                        <h6 className="font-bold">Developing Cutting-edge Interfaces</h6>
+                        <h6 className="font-bold">
+                            Developing Cutting-edge Interfaces and Experiences
+                        </h6>
                     </li>
                     <li className="flex items-center gap-4 md:text-xl">
                         <h6>Delivering</h6>
