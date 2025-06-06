@@ -19,7 +19,9 @@ export default function Footer() {
                     <div className="flex items-center">
                         <HiOutlineArrowLongRight />
                         <Link
-                            href={'https://drive.google.com/file/d/1UqvSL6goIAfOb6A-AtUzVNzmT_8AYlQu/view?usp=sharing'}
+                            href={
+                                'https://drive.google.com/file/d/1UqvSL6goIAfOb6A-AtUzVNzmT_8AYlQu/view?usp=sharing'
+                            }
                             target="_blank"
                             className="font-degular sm:text-xl text-lg font-medium hover:bg-black hover:text-white transition"
                         >
@@ -58,8 +60,12 @@ export default function Footer() {
                     </div>
                 </div>
                 <div className="w-full text-right lg:grid grid-cols-1 gap-2">
-                    <p className="font-degular sm:text-xl text-lg font-medium">Updated 08/24</p>
-                    <p className="font-degular sm:text-xl text-lg font-medium">Muchammad Alif Zaidan</p>
+                    <p className="font-degular sm:text-xl text-lg font-medium">
+                        Updated 01/25
+                    </p>
+                    <p className="font-degular sm:text-xl text-lg font-medium">
+                        Muchammad Alif Zaidan
+                    </p>
                 </div>
             </div>
         </footer>
